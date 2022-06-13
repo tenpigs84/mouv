@@ -1,0 +1,45 @@
+{
+  "name": "SmsTemplate",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "模板标题"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "javadoc": "模板CODE"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "MessageSendType",
+      "javadoc": "模板类型",
+      "fieldValues": "EMAIL,SMS,WECHAT"
+    },
+    {
+      "fieldName": "content",
+      "fieldType": "String",
+      "javadoc": "模板内容"
+    },
+    {
+      "fieldName": "testJson",
+      "fieldType": "String",
+      "javadoc": "模板测试json"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "消息模板",
+  "entityTableName": "sms_template",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "skipFakeData": true,
+  "extendAbstractAuditingEntity": true,
+  "moduleName": "system"
+}

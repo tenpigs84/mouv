@@ -1,0 +1,49 @@
+{
+  "name": "DataPermissionRule",
+  "fields": [
+    {
+      "fieldName": "permissionId",
+      "fieldType": "String",
+      "javadoc": "菜单ID"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "规则名称"
+    },
+    {
+      "fieldName": "column",
+      "fieldType": "String",
+      "javadoc": "字段"
+    },
+    {
+      "fieldName": "conditions",
+      "fieldType": "String",
+      "javadoc": "条件"
+    },
+    {
+      "fieldName": "value",
+      "fieldType": "String",
+      "javadoc": "规则值"
+    },
+    {
+      "fieldName": "disabled",
+      "fieldType": "Boolean",
+      "javadoc": "禁用状态"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "数据权限规则",
+  "entityTableName": "data_permission_rule",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "skipFakeData": true,
+  "extendAbstractAuditingEntity": true,
+  "moduleName": "system"
+}

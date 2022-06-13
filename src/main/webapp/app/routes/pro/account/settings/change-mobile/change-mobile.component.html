@@ -1,0 +1,42 @@
+<div class="box-login login">
+  <div class="login__wrap">
+    <ng-container>
+      <h2 class="login__title" jhiTranslate="mobile.title" [translateValues]="{ username: account.login }" *ngIf="account">
+        Mobile for [<b>{{ account.login }}</b
+        >]
+      </h2>
+      <div class="mt-md">
+        <form nz-form #f="ngForm" nzLayout="vertical" (ngSubmit)="changeMobile()" role="form">
+          <nz-alert *ngIf="error" [nzType]="'error'" [nzMessage]="error" [nzShowIcon]="true" class="mb-lg"></nz-alert>
+          <div class="mt-md">
+            <input [(ngModel)]="mobile" id="mobile" name="mobile" nz-input nzSize="large" autocomplete="off" placeholder="手机号码" />
+          </div>
+          <div class="mt-md">
+            <input nz-input [(ngModel)]="smsCode" name="smsCode" autocomplete="off" placeholder="短信验证码" class="mobile-code" />
+            <button
+              nz-button
+              nzType="default"
+              nzBlock
+              type="button"
+              (click)="sendSmsCode()"
+              [disabled]="smsBtnDisable"
+              [nzLoading]="loading"
+              class="mobile-login-button"
+            >
+              {{ smsBtnTitle }}
+            </button>
+          </div>
+          <div class="mt-md" *ngIf="captcha">
+            <input nz-input [(ngModel)]="imageCode" name="imageCode" autocomplete="off" placeholder="图形验证码" class="mobile-code" />
+            <img [src]="captcha" style="width: 150px; height: 50px" />
+          </div>
+          <div class="mt-md">
+            <button nz-button nzType="primary" nzSize="large" nzBlock type="submit" [disabled]="f.invalid" [nzLoading]="loading">
+              {{ 'entity.action.save' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </ng-container>
+  </div>
+</div>

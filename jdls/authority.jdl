@@ -1,0 +1,109 @@
+/**
+ *
+ * 可视权限
+ * 权限分为菜单权限、按钮权限等
+ *
+ */
+@skipComponent(mapper)
+@importData
+@addCustomMethod(repository-service-rest-clientService)
+entity ViewPermission {
+    text String /** 权限名称 */
+	i18n String /** i18n主键 */
+	group Boolean /** 显示分组名 */
+	link String /** 路由 */
+	externalLink String /** 外部链接 */
+	target TargetType /** 链接目标 */
+	icon String /** 图标 */
+	disabled Boolean /** 禁用菜单 */
+	hide Boolean /** 隐藏菜单 */
+	hideInBreadcrumb Boolean /** 隐藏面包屑 */
+	shortcut Boolean /** 快捷菜单项 */
+	shortcutRoot Boolean /** 菜单根节点 */
+	reuse Boolean /** 允许复用 */
+    code String /** 权限代码(ROLE_开头) */
+    description String /** 权限描述 */
+    type ViewPermissionType /** 权限类型 */
+    order Integer  /** 排序 */
+	apiPermissionCodes String /** api权限标识串*/
+	componentFile String /** 组件名称 */
+	redirect String /** 组件名称 */
+}
+
+/**
+ * 系统日志
+ */
+@extendAbstractAuditingEntity
+@skipFakeData
+@moduleName(system)
+@addCustomMethod(rest-queryService)
+entity SysLog {
+  logType LogType /** 日志类型 */
+  logContent String /** 日志内容 */
+  operateType Integer /** 操作类型 */
+  userid String /** 操作用户账号 */
+  username String /** 操作用户名称 */
+  ip String /** IP */
+  method String /** 请求java方法 */
+  requestUrl String /** 请求路径 */
+  requestParam TextBlob /** 请求参数 */
+  requestType String /** 请求类型 */
+  costTime Long /** 耗时 */
+}
+
+/** 数据权限规则 */
+@moduleName(system)
+@extendAbstractAuditingEntity
+@skipFakeData
+entity DataPermissionRule {
+  permissionId String /** 菜单ID */
+  name String /** 规则名称 */
+  column String /** 字段 */
+  conditions String /** 条件 */
+  value String /** 规则值 */
+  disabled Boolean /** 禁用状态 */
+}
+
+/**
+ * 日志类型（1登录日志，2操作日志）
+ */
+enum LogType {
+	LOGIN, OPERATE
+}
+
+relationship OneToMany {
+
+	/** 子节点 */
+	ViewPermission{children(text)}
+	to
+	/** 上级 */
+    ViewPermission{parent(text)}
+
+}
+
+/** 权限与角色对应关系 */
+relationship ManyToMany {
+
+	/** 菜单列表 */
+	Authority{viewPermissions(text)}
+	to
+	/** 角色列表 */
+	ViewPermission{authorities(name)}
+
+}
+
+/** 可视权限类型 */
+enum ViewPermissionType {
+    MENU, BUTTON
+}
+
+/** 链接目标 */
+enum TargetType {
+	BLANK, SELF, PARENT, TOP
+}
+service all with serviceClass
+filter *
+dto all with mapstruct
+clientRootFolder ViewPermission with system
+paginate all with pagination
+//

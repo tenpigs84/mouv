@@ -1,0 +1,73 @@
+/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
+/* stylelint-disable no-duplicate-selectors */
+/* stylelint-disable */
+/* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
+:host ::ng-deep .container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: #f0f2f5;
+}
+:host ::ng-deep .langs {
+  width: 100%;
+  height: 40px;
+  line-height: 44px;
+  text-align: right;
+}
+:host ::ng-deep .langs .ant-dropdown-trigger {
+  display: inline-block;
+}
+:host ::ng-deep .langs .anticon {
+  margin-top: 24px;
+  margin-right: 24px;
+  font-size: 14px;
+  vertical-align: top;
+  cursor: pointer;
+}
+:host ::ng-deep .wrap {
+  flex: 1;
+  padding: 32px 0;
+}
+:host ::ng-deep .ant-form-item {
+  margin-bottom: 24px;
+}
+@media (min-width: 768px) {
+  :host ::ng-deep .container {
+    background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg');
+    background-repeat: no-repeat;
+    background-position: center 110px;
+    background-size: 100%;
+  }
+  :host ::ng-deep .wrap {
+    padding: 32px 0 24px;
+  }
+}
+:host ::ng-deep .top {
+  text-align: center;
+}
+:host ::ng-deep .header {
+  height: 44px;
+  line-height: 44px;
+}
+:host ::ng-deep .header a {
+  text-decoration: none;
+}
+:host ::ng-deep .logo {
+  height: 44px;
+  margin-right: 16px;
+}
+:host ::ng-deep .title {
+  position: relative;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 600;
+  font-size: 33px;
+  font-family: 'Myriad Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  vertical-align: middle;
+}
+:host ::ng-deep .desc {
+  margin-top: 12px;
+  margin-bottom: 40px;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+}
+/*# sourceMappingURL=passport.component.css.map */

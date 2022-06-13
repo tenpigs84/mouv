@@ -1,0 +1,18 @@
+/** 网站配置 */
+@extendAbstractAuditingEntity
+@skipFakeData
+@moduleName(system)
+entity SiteConfig {
+    title String /** 标题 */
+    remark String /** 说明 */
+    fieldName String /** 属性名 */
+    fieldValue String /** 属性值 */
+    fieldType CommonFieldType /** 属性类型 */
+}
+
+
+service all with serviceClass
+filter *
+dto all with mapstruct
+paginate all with pagination
+//

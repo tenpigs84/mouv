@@ -1,0 +1,77 @@
+{
+  "name": "SysLog",
+  "fields": [
+    {
+      "fieldName": "logType",
+      "fieldType": "LogType",
+      "javadoc": "日志类型",
+      "fieldValues": "LOGIN,OPERATE"
+    },
+    {
+      "fieldName": "logContent",
+      "fieldType": "String",
+      "javadoc": "日志内容"
+    },
+    {
+      "fieldName": "operateType",
+      "fieldType": "Integer",
+      "javadoc": "操作类型"
+    },
+    {
+      "fieldName": "userid",
+      "fieldType": "String",
+      "javadoc": "操作用户账号"
+    },
+    {
+      "fieldName": "username",
+      "fieldType": "String",
+      "javadoc": "操作用户名称"
+    },
+    {
+      "fieldName": "ip",
+      "fieldType": "String",
+      "javadoc": "IP"
+    },
+    {
+      "fieldName": "method",
+      "fieldType": "String",
+      "javadoc": "请求java方法"
+    },
+    {
+      "fieldName": "requestUrl",
+      "fieldType": "String",
+      "javadoc": "请求路径"
+    },
+    {
+      "fieldName": "requestParam",
+      "fieldType": "byte[]",
+      "javadoc": "请求参数",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "requestType",
+      "fieldType": "String",
+      "javadoc": "请求类型"
+    },
+    {
+      "fieldName": "costTime",
+      "fieldType": "Long",
+      "javadoc": "耗时"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "系统日志",
+  "entityTableName": "sys_log",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "skipFakeData": true,
+  "addCustomMethod": "rest-queryService",
+  "extendAbstractAuditingEntity": true,
+  "moduleName": "system"
+}

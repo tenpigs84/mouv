@@ -1,0 +1,131 @@
+{
+  "name": "Announcement",
+  "fields": [
+    {
+      "fieldName": "titile",
+      "fieldType": "String",
+      "javadoc": "标题"
+    },
+    {
+      "fieldName": "content",
+      "fieldType": "byte[]",
+      "javadoc": "内容",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "startTime",
+      "fieldType": "ZonedDateTime",
+      "javadoc": "开始时间"
+    },
+    {
+      "fieldName": "endTime",
+      "fieldType": "ZonedDateTime",
+      "javadoc": "结束时间"
+    },
+    {
+      "fieldName": "senderId",
+      "fieldType": "Long",
+      "javadoc": "发布人Id"
+    },
+    {
+      "fieldName": "priority",
+      "fieldType": "PriorityLevel",
+      "javadoc": "优先级\\n（L低，M中，H高）",
+      "fieldValues": "HIGH,MEDIUM,LOW"
+    },
+    {
+      "fieldName": "category",
+      "fieldType": "AnnoCategory",
+      "javadoc": "消息类型\\n通知公告,系统消息",
+      "fieldValues": "SYSTEM_INFO,NOTICE"
+    },
+    {
+      "fieldName": "receiverType",
+      "fieldType": "ReceiverType",
+      "javadoc": "通告对象类型\\n（USER:指定用户，ALL:全体用户）",
+      "fieldValues": "USER,ALL,DEPARTMENT,AUTHORITY,POSITION"
+    },
+    {
+      "fieldName": "sendStatus",
+      "fieldType": "AnnoSendStatus",
+      "javadoc": "发布状态\\n",
+      "fieldValues": "NOT_RELEASE,RELEASED,CANCELED",
+      "options": {
+        "fieldConfig": "hideInForm"
+      }
+    },
+    {
+      "fieldName": "sendTime",
+      "fieldType": "ZonedDateTime",
+      "javadoc": "发布时间",
+      "options": {
+        "fieldConfig": "hideInForm"
+      }
+    },
+    {
+      "fieldName": "cancelTime",
+      "fieldType": "ZonedDateTime",
+      "javadoc": "撤销时间",
+      "options": {
+        "fieldConfig": "hideInForm"
+      }
+    },
+    {
+      "fieldName": "businessType",
+      "fieldType": "AnnoBusinessType",
+      "javadoc": "业务类型\\n(email:邮件 bpm:流程)",
+      "fieldValues": "EMAIL,WORKFLOW"
+    },
+    {
+      "fieldName": "businessId",
+      "fieldType": "Long",
+      "javadoc": "业务id"
+    },
+    {
+      "fieldName": "openType",
+      "fieldType": "AnnoOpenType",
+      "javadoc": "打开方式",
+      "fieldValues": "URL,COMPONENT"
+    },
+    {
+      "fieldName": "openPage",
+      "fieldType": "String",
+      "javadoc": "组件/路由 地址",
+      "options": {
+        "fieldConfig": "hideInForm"
+      }
+    },
+    {
+      "fieldName": "receiverIds",
+      "fieldType": "byte[]",
+      "javadoc": "指定接收者id",
+      "fieldTypeBlobContent": "any",
+      "options": {
+        "customWrapType": "Array_Long",
+        "fieldConfig": "hideInForm"
+      }
+    },
+    {
+      "fieldName": "summary",
+      "fieldType": "byte[]",
+      "javadoc": "摘要",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "系统通告",
+  "entityTableName": "announcement",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "skipFakeData": true,
+  "addCustomMethod": "updateTemplate-clientService-service-listComponent-rest",
+  "extendAbstractAuditingEntity": true,
+  "moduleName": "system",
+  "useTemplate": "edit"
+}

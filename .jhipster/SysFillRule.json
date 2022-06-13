@@ -1,0 +1,39 @@
+{
+  "name": "SysFillRule",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "规则名称"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "javadoc": "规则Code"
+    },
+    {
+      "fieldName": "implClass",
+      "fieldType": "String",
+      "javadoc": "规则实现类"
+    },
+    {
+      "fieldName": "params",
+      "fieldType": "String",
+      "javadoc": "规则参数"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "填充规则",
+  "entityTableName": "sys_fill_rule",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "skipFakeData": true,
+  "microServiceCore": true,
+  "clientRootFolder": "settings"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "SiteConfig",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "javadoc": "标题"
+    },
+    {
+      "fieldName": "remark",
+      "fieldType": "String",
+      "javadoc": "说明"
+    },
+    {
+      "fieldName": "fieldName",
+      "fieldType": "String",
+      "javadoc": "属性名"
+    },
+    {
+      "fieldName": "fieldValue",
+      "fieldType": "String",
+      "javadoc": "属性值"
+    },
+    {
+      "fieldName": "fieldType",
+      "fieldType": "CommonFieldType",
+      "javadoc": "属性类型",
+      "fieldValues": "INTEGER,LONG,BOOLEAN,STRING,FLOAT,DOUBLE,ZONED_DATE_TIME,LOCATE_DATE,BIG_DECIMAL,TEXTBLOB,IMAGEBLOB,ARRAY,ENUM,UPLOAD_IMAGE,UPLOAD_FILE,ENTITY,RADIO,MULTI_SELECT,DATA_DICTIONARY,UUID,INSTANT"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "网站配置",
+  "entityTableName": "site_config",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "skipFakeData": true,
+  "extendAbstractAuditingEntity": true,
+  "moduleName": "system"
+}

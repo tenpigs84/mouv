@@ -1,0 +1,128 @@
+<!--<page-header [title]="'testdele06App.systemAuthority.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item [hidden]="!authority.id">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="idx">{{ 'global.field.id' | translate }}</nz-form-label>
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input name="id" id="id" [(ngModel)]="authority.id" readonly />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="testdele06App.systemAuthority.id">ID</nz-form-label>
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="authority.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_name"
+        jhiTranslate="testdele06App.systemAuthority.name"
+        [ngbTooltip]="'testdele06App.systemAuthority.help.name' | translate"
+        >Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="name" id="field_name" [(ngModel)]="authority.name" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_code"
+        jhiTranslate="testdele06App.systemAuthority.code"
+        [ngbTooltip]="'testdele06App.systemAuthority.help.code' | translate"
+        >Code</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="code" id="field_code" [(ngModel)]="authority.code" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_info"
+        jhiTranslate="testdele06App.systemAuthority.info"
+        [ngbTooltip]="'testdele06App.systemAuthority.help.info' | translate"
+        >Info</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="info" id="field_info" [(ngModel)]="authority.info" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_order"
+        jhiTranslate="testdele06App.systemAuthority.order"
+        [ngbTooltip]="'testdele06App.systemAuthority.help.order' | translate"
+        >Order</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="order" id="field_order" [(ngModel)]="authority.order" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_display"
+        jhiTranslate="testdele06App.systemAuthority.display"
+        [ngbTooltip]="'testdele06App.systemAuthority.help.display' | translate"
+        >Display</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-switch [(ngModel)]="authority!.display" nzCheckedChildren="是" nzUnCheckedChildren="否"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_apiPermissions" jhiTranslate="testdele06App.systemAuthority.apiPermissions"
+        >Api权限</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-tree-select
+          style="width: 250px"
+          name="apiPermissions"
+          id="field_apiPermissions"
+          [nzNodes]="apipermissionsNzTreeNodes"
+          nzCheckable
+          nzPlaceHolder="Please select"
+          [(ngModel)]="authority.apiPermissions"
+        >
+        </nz-tree-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_viewPermissions" jhiTranslate="testdele06App.systemAuthority.viewPermissions"
+        >菜单列表</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-tree-select
+          style="width: 250px"
+          name="viewPermissions"
+          id="field_viewPermissions"
+          [nzNodes]="viewpermissionsNzTreeNodes"
+          nzCheckable
+          nzPlaceHolder="Please select"
+          [(ngModel)]="authority.viewPermissions"
+        >
+        </nz-tree-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

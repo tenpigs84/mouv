@@ -1,0 +1,222 @@
+<!--<page-header [title]="'testdele06App.user.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item [hidden]="!user.id">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="idx">{{ 'global.field.id' | translate }}</nz-form-label>
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input name="id" id="id" [(ngModel)]="user.id" readonly />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="testdele06App.user.id">ID</nz-form-label>
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="user.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_login"
+        jhiTranslate="testdele06App.user.login"
+        [ngbTooltip]="'testdele06App.user.help.login' | translate"
+        >Login</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="login" id="field_login" [(ngModel)]="user.login" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_password"
+        jhiTranslate="testdele06App.user.password"
+        [ngbTooltip]="'testdele06App.user.help.password' | translate"
+        >Password</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="password" id="field_password" [(ngModel)]="user.password" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_firstName"
+        jhiTranslate="testdele06App.user.firstName"
+        [ngbTooltip]="'testdele06App.user.help.firstName' | translate"
+        >First Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="firstName" id="field_firstName" [(ngModel)]="user.firstName" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_lastName"
+        jhiTranslate="testdele06App.user.lastName"
+        [ngbTooltip]="'testdele06App.user.help.lastName' | translate"
+        >Last Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="lastName" id="field_lastName" [(ngModel)]="user.lastName" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_email"
+        jhiTranslate="testdele06App.user.email"
+        [ngbTooltip]="'testdele06App.user.help.email' | translate"
+        >Email</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="email" id="field_email" [(ngModel)]="user.email" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_mobile"
+        jhiTranslate="testdele06App.user.mobile"
+        [ngbTooltip]="'testdele06App.user.help.mobile' | translate"
+        >Mobile</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="mobile" id="field_mobile" [(ngModel)]="user.mobile" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_birthday"
+        jhiTranslate="testdele06App.user.birthday"
+        [ngbTooltip]="'testdele06App.user.help.birthday' | translate"
+        >Birthday</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_birthday" name="birthday" [(ngModel)]="user.birthday" nzShowTime></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_activated"
+        jhiTranslate="testdele06App.user.activated"
+        [ngbTooltip]="'testdele06App.user.help.activated' | translate"
+        >Activated</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-switch [(ngModel)]="user!.activated" nzCheckedChildren="是" nzUnCheckedChildren="否"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_langKey"
+        jhiTranslate="testdele06App.user.langKey"
+        [ngbTooltip]="'testdele06App.user.help.langKey' | translate"
+        >Lang Key</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="langKey" id="field_langKey" [(ngModel)]="user.langKey" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_imageUrl"
+        jhiTranslate="testdele06App.user.imageUrl"
+        [ngbTooltip]="'testdele06App.user.help.imageUrl' | translate"
+        >Image Url</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="imageUrl" id="field_imageUrl" [(ngModel)]="user.imageUrl" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_activationKey"
+        jhiTranslate="testdele06App.user.activationKey"
+        [ngbTooltip]="'testdele06App.user.help.activationKey' | translate"
+        >Activation Key</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="activationKey" id="field_activationKey" [(ngModel)]="user.activationKey" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_activationKey"
+        jhiTranslate="testdele06App.user.activationKey"
+        [ngbTooltip]="'testdele06App.user.help.activationKey' | translate"
+        >Activation Key</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="activationKey" id="field_activationKey" [(ngModel)]="user.activationKey" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_resetKey"
+        jhiTranslate="testdele06App.user.resetKey"
+        [ngbTooltip]="'testdele06App.user.help.resetKey' | translate"
+        >Reset Key</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="resetKey" id="field_resetKey" [(ngModel)]="user.resetKey" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_resetDate"
+        jhiTranslate="testdele06App.user.resetDate"
+        [ngbTooltip]="'testdele06App.user.help.resetDate' | translate"
+        >Reset Date</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_resetDate" name="resetDate" [(ngModel)]="user.resetDate" nzShowTime></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_department" jhiTranslate="testdele06App.user.department">部门</nz-form-label>
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select style="width: 250px" id="field_department" name="department" [(ngModel)]="user.departmentId">
+          <nz-option
+            *ngFor="let departmentOption of departments; trackBy: trackDepartmentById"
+            [nzLabel]="departmentOption.name"
+            [nzValue]="departmentOption.id"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

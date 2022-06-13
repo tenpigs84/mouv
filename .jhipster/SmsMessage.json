@@ -1,0 +1,72 @@
+{
+  "name": "SmsMessage",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "javadoc": "消息标题"
+    },
+    {
+      "fieldName": "sendType",
+      "fieldType": "MessageSendType",
+      "javadoc": "发送方式",
+      "fieldValues": "EMAIL,SMS,WECHAT"
+    },
+    {
+      "fieldName": "receiver",
+      "fieldType": "String",
+      "javadoc": "接收人"
+    },
+    {
+      "fieldName": "params",
+      "fieldType": "String",
+      "javadoc": "发送所需参数Json格式"
+    },
+    {
+      "fieldName": "content",
+      "fieldType": "byte[]",
+      "javadoc": "推送内容",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "sendTime",
+      "fieldType": "ZonedDateTime",
+      "javadoc": "推送时间"
+    },
+    {
+      "fieldName": "sendStatus",
+      "fieldType": "SendStatus",
+      "javadoc": "推送状态",
+      "fieldValues": "WAITING,SUCCESS,FAILURE,NOT_TRY"
+    },
+    {
+      "fieldName": "retryNum",
+      "fieldType": "Integer",
+      "javadoc": "发送次数 超过5次不再发送"
+    },
+    {
+      "fieldName": "failResult",
+      "fieldType": "String",
+      "javadoc": "推送失败原因"
+    },
+    {
+      "fieldName": "remark",
+      "fieldType": "String",
+      "javadoc": "备注"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "短信消息",
+  "entityTableName": "sms_message",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "skipFakeData": true,
+  "extendAbstractAuditingEntity": true,
+  "moduleName": "system"
+}

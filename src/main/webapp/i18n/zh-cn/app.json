@@ -1,0 +1,143 @@
+{
+  "app": {
+    "analysis": {
+      "home": {
+        "title": "后台中心"
+      },
+      "test": "工专路 {{no}} 号店",
+      "introduce": "指标说明",
+      "total-sales": "总销售额",
+      "day-sales": "日销售额",
+      "visits": "访问量",
+      "visits-trend": "访问量趋势",
+      "visits-ranking": "门店访问量排名",
+      "day-visits": "日访问量",
+      "week": "周同比",
+      "day": "日同比",
+      "payments": "支付笔数",
+      "conversion-rate": "转化率",
+      "operational-effect": "运营活动效果",
+      "sales-trend": "销售趋势",
+      "sales-ranking": "门店销售额排名",
+      "all-year": "全年",
+      "all-month": "本月",
+      "all-week": "本周",
+      "all-day": "今日",
+      "search-users": "搜索用户数",
+      "per-capita-search": "人均搜索次数",
+      "online-top-search": "线上热门搜索",
+      "the-proportion-of-sales": "销售额类别占比",
+      "channel.all": "全部渠道",
+      "channel.online": "线上",
+      "channel.stores": "门店",
+      "sales": "销售额",
+      "traffic": "客流量",
+      "table": {
+        "rank": "排名",
+        "search-keyword": "搜索关键词",
+        "users": "用户数",
+        "weekly-range": "周涨幅"
+      }
+    },
+    "register": {
+      "register": "注册",
+      "get-verification-code": "获取验证码",
+      "sign-in": "使用已有账户登录",
+      "placeholder": {
+        "email": "邮箱",
+        "password": "密码",
+        "confirm-password": "确认密码",
+        "mobile-number": "手机号码",
+        "captcha": "验证码"
+      }
+    },
+    "register-result": {
+      "msg": "你的账户：{{email}} 注册成功",
+      "activation-email": "激活邮件已发送到你的邮箱中，邮件有效期为24小时。请及时登录邮箱，点击邮件中的链接激活帐户。",
+      "back-home": "返回首页",
+      "view-mailbox": "查看邮箱"
+    },
+    "login": {
+      "login": "登录",
+      "signup": "注册账户",
+      "sign-in-with": "其他登录方式",
+      "forgot-password": "忘记密码",
+      "remember-me": "自动登录",
+      "tab-login-mobile": "手机号登录",
+      "tab-login-credentials": "账户密码登录",
+      "message-invalid-verification-code": "验证码错误",
+      "message-invalid-credentials": "账户或密码错误",
+      "placeholder": {
+        "username": "用户名",
+        "password": "密码",
+        "mobile-number": "手机号码",
+        "captcha": "验证码"
+      },
+      "error-tip": {
+        "enter-username": "用户名至少4位以上字符",
+        "enter-password": "密码至少6位以上"
+      }
+    },
+    "setting": {
+      "pagestyle": {
+        "title": "整体风格设置",
+        "dark": "暗色菜单风格",
+        "light": "亮色菜单风格"
+      },
+      "content-width": "内容区域宽度",
+      "content-width.fixed": "定宽",
+      "content-width.fluid": "流式",
+      "themecolor": "主题色",
+      "themecolor.dust": "薄暮",
+      "themecolor.volcano": "火山",
+      "themecolor.sunset": "日暮",
+      "themecolor.cyan": "明青",
+      "themecolor.green": "极光绿",
+      "themecolor.daybreak": "拂晓蓝（默认）",
+      "themecolor.geekblue": "极客蓝",
+      "themecolor.purple": "酱紫",
+      "navigationmode": "导航模式",
+      "sidemenu": "侧边菜单布局",
+      "topmenu": "顶部菜单布局",
+      "fixedheader": "固定 Header",
+      "fixedsidebar": "固定侧边菜单",
+      "fixedsidebar.hint": "侧边菜单布局时可配置",
+      "hideheader": "下滑时隐藏 Header",
+      "hideheader.hint": "固定 Header 时可配置",
+      "onlyicon": "只显示图标",
+      "onlyicon.hint": "顶部菜单布局时可配置",
+      "othersettings": "其他设置",
+      "weakmode": "色弱模式",
+      "copy": "拷贝设置",
+      "copyinfo": "拷贝成功，请根据剪切板内容进行替换",
+      "production.hint": "配置栏只在开发环境用于预览，生产环境不会展现，请拷贝后手动修改配置文件",
+      "copy.result": "在 [src/styles/theme.less] 配置以下：\n{{colorVars}}\n\n在 [src/environments/*] 的 pro 配置以下：\nexport const environment = {\n  ...\n  pro: {\n{{layoutVars}}\n  }\n}"
+    }
+  },
+  "validation": {
+    "email": {
+      "required": "请输入邮箱地址！",
+      "wrong-format": "邮箱地址格式错误！"
+    },
+    "password": {
+      "required": "请输入密码！",
+      "twice": "两次输入的密码不匹配!",
+      "strength": {
+        "msg": "请至少输入 6 个字符。请不要使用容易被猜到的密码。",
+        "strong": "强度：强",
+        "medium": "强度：中",
+        "short": "强度：太短"
+      }
+    },
+    "confirm-password": {
+      "required": "请确认密码！"
+    },
+    "phone-number": {
+      "required": "请输入手机号！",
+      "wrong-format": "手机号格式错误！"
+    },
+    "verification-code": {
+      "required": "请输入验证码！"
+    }
+  }
+}

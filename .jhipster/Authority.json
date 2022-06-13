@@ -1,0 +1,91 @@
+{
+  "name": "Authority",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "角色名称"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "javadoc": "角色代号"
+    },
+    {
+      "fieldName": "info",
+      "fieldType": "String",
+      "javadoc": "信息"
+    },
+    {
+      "fieldName": "order",
+      "fieldType": "Integer",
+      "javadoc": "排序"
+    },
+    {
+      "fieldName": "display",
+      "fieldType": "Boolean",
+      "javadoc": "展示"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "authority",
+      "otherEntityRelationshipName": "parent",
+      "javadoc": "子节点",
+      "relationshipName": "children",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "authority",
+      "otherEntityRelationshipName": "children",
+      "javadoc": "上级",
+      "relationshipName": "parent",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "department",
+      "otherEntityRelationshipName": "authorities",
+      "javadoc": "部门列表\\nconfig: { \"unidirectionSkip\": true }",
+      "ownerSide": false,
+      "relationshipName": "departments",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "apiPermission",
+      "otherEntityRelationshipName": "authorities",
+      "javadoc": "Api权限",
+      "ownerSide": true,
+      "relationshipName": "apiPermissions",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "viewPermission",
+      "otherEntityRelationshipName": "authorities",
+      "javadoc": "菜单列表",
+      "ownerSide": true,
+      "relationshipName": "viewPermissions",
+      "otherEntityField": "text"
+    }
+  ],
+  "entityTableName": "jhi_authority",
+  "clientRootFolder": "system",
+  "embedded": false,
+  "javadoc": "角色",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "applications": "*",
+  "skipComponent": "domain-dto-mapper-listPage",
+  "skipFakeData": true,
+  "skipClient": false,
+  "skipServer": true,
+  "addCustomMethod": "repository-service-queryService-updateComponent",
+  "changelogDate": "20210319031651"
+}

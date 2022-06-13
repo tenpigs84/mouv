@@ -1,0 +1,41 @@
+{
+  "name": "UReportFile",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "名称"
+    },
+    {
+      "fieldName": "content",
+      "fieldType": "byte[]",
+      "javadoc": "内容",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "createAt",
+      "fieldType": "ZonedDateTime",
+      "javadoc": "创建时间"
+    },
+    {
+      "fieldName": "updateAt",
+      "fieldType": "ZonedDateTime",
+      "javadoc": "更新时间"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "报表存储",
+  "entityTableName": "u_report_file",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "skipFakeData": true,
+  "skipComponent": "listPage",
+  "addCustomMethod": "repository-service-listComponent",
+  "clientRootFolder": "report"
+}

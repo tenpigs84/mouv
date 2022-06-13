@@ -1,0 +1,84 @@
+/**
+ * 数据字典
+ */
+@microServiceCore
+@skipFakeData
+entity DataDictionary {
+	name String /** 名称 */
+	code String /** 代码 */
+	title String /** 字典项文本 */
+  	value String /** 字典项值 */
+  	description String /** 描述 */
+  	sortOrder Integer /** 排序 */
+  	disabled Boolean /** 是否禁用 */
+	fontColor String /** 字体颜色 */
+	valueType DictType /** 值类型 */
+	backgroundColor String /** 背景颜色 */
+}
+
+enum DictType {
+	NUMBER, STRING
+}
+
+/**
+ * 行政区划码
+ */
+@microServiceCore
+entity RegionCode {
+	name String /** 名称 */
+	areaCode String /** 地区代码 */
+	cityCode String /** 城市代码 */
+	mergerName String /** 全名 */
+	shortName String /** 短名称 */
+	zipCode String /** 邮政编码 */
+	level RegionCodeLevel /** 等级 */
+	lng Double /** 经度 */
+	lat Double /** 纬度 */
+}
+enum GpsType {
+	BAIDU,GOOGLE_MAP,GOOGLE_EART,AMAP
+}
+
+enum RegionCodeLevel {
+	PROVINCE,CITY,COUNTY,TOWN,VILLAGE
+}
+
+/** 填充规则 */
+@microServiceCore
+@skipFakeData
+entity SysFillRule {
+  name String /** 规则名称 */
+  code String /** 规则Code */
+  implClass String /** 规则实现类 */
+  params String /** 规则参数 */
+}
+
+relationship OneToMany {
+	/**
+	 * 子节点
+	 */
+	DataDictionary{children(name)}
+	to
+	/**
+	 * 上级节点
+	 */
+	DataDictionary{parent(name)}
+
+	/**
+	 * 子节点
+	 */
+	RegionCode{children(name)}
+	to
+	/**
+	 * 上级节点
+	 */
+	RegionCode{parent(name)}
+}
+
+
+service all with serviceClass
+filter *
+dto all with mapstruct
+paginate all with pagination
+clientRootFolder DataDictionary, SysFillRule, RegionCode with settings
+//

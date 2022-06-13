@@ -1,0 +1,12 @@
+{
+  "mobile": {
+    "title": "[<b>{{username}}</b>] 手机号码",
+    "form": {
+      "button": "保存"
+    },
+    "messages": {
+      "error": "<strong>发生错误!</strong> 验证码无效",
+      "success": "<strong>手机号码修改成功!</strong>"
+    }
+  }
+}

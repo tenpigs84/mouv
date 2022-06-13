@@ -1,0 +1,266 @@
+<page-grid>
+  <div nz-row [nzGutter]="24">
+    <div nz-col>
+      <h1 jhiTranslate="testdele06App.systemAuthority.home.title">角色</h1>
+      <form nz-form [nzLayout]="'inline'" class="search__form">
+        <div nz-row [nzGutter]="{ xs: 8, sm: 8, md: 8, lg: 24, xl: 48, xxl: 48 }">
+          <div nz-col nzMd="8" nzSm="24">
+            <nz-form-item>
+              <nz-form-label nzFor="no">搜索</nz-form-label>
+              <nz-form-control>
+                <nz-input-group [nzSuffix]="searchSuffixTemplate">
+                  <input type="text" nz-input name="jhiCommonSearchKeywords" [(ngModel)]="searchValue" placeholder="请输入关键字" />
+                </nz-input-group>
+                <ng-template #searchSuffixTemplate>
+                  <i
+                    nz-icon
+                    nz-tooltip
+                    class="ant-input-clear-icon"
+                    nzTheme="fill"
+                    nzType="close-circle"
+                    *ngIf="searchValue"
+                    (click)="searchValue = ''"
+                  ></i>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <button nz-button type="submit" nzType="primary" (click)="loadAll()">查询</button>
+            <button nz-button nzType="primary" [routerLink]="['./new']">增加</button>
+            <button nz-button nzType="danger" *ngIf="numberOfChecked > 0" (click)="deleteByIdsConfirm()">批量删除</button>
+          </div>
+        </div>
+      </form>
+      <div class="my-md">
+        <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message">
+          <ng-template #message>
+            已选择
+            <strong class="text-primary">{{ numberOfChecked }}</strong> 项&nbsp;
+          </ng-template>
+        </nz-alert>
+      </div>
+      <nz-table #nzTable [nzData]="authorities" [nzScroll]="{ x: tableWidth() }">
+        <thead>
+          <tr>
+            <th
+              nzLeft="0px"
+              nzWidth="48px"
+              nzShowCheckbox
+              [(nzChecked)]="isAllDisplayDataChecked"
+              [nzIndeterminate]="isIndeterminate"
+              (nzCheckedChange)="checkAll($event)"
+            ></th>
+            <th
+              nzLeft="48px"
+              nzWidth="52px"
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.id"
+              (nzSortOrderChange)="sort('id', $event)"
+              nzCustomFilter
+            >
+              <span jhiTranslate="global.field.id">ID</span>
+              <i
+                class="ant-table-filter-icon"
+                nz-icon
+                nz-dropdown
+                #dropdown="nzDropdown"
+                nzType="search"
+                [nzDropdownMenu]="idmenu"
+                [class.ant-table-filter-open]="dropdown.nzVisible"
+                nzTrigger="click"
+                nzPlacement="bottomRight"
+                [nzClickHide]="false"
+                nzTableFilter
+              >
+              </i>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.id"
+              (nzSortOrderChange)="sort('id', $event)"
+              nzCustomFilter
+              *ngIf="showField('id')"
+              [nzWidth]="fieldWidth('id')"
+            >
+              <span jhiTranslate="testdele06App.systemAuthority.id">ID</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.name"
+              (nzSortOrderChange)="sort('name', $event)"
+              nzCustomFilter
+              *ngIf="showField('name')"
+              [nzWidth]="fieldWidth('name')"
+            >
+              <span jhiTranslate="testdele06App.systemAuthority.name">Name</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.code"
+              (nzSortOrderChange)="sort('code', $event)"
+              nzCustomFilter
+              *ngIf="showField('code')"
+              [nzWidth]="fieldWidth('code')"
+            >
+              <span jhiTranslate="testdele06App.systemAuthority.code">Code</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.info"
+              (nzSortOrderChange)="sort('info', $event)"
+              nzCustomFilter
+              *ngIf="showField('info')"
+              [nzWidth]="fieldWidth('info')"
+            >
+              <span jhiTranslate="testdele06App.systemAuthority.info">Info</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.order"
+              (nzSortOrderChange)="sort('order', $event)"
+              nzCustomFilter
+              *ngIf="showField('order')"
+              [nzWidth]="fieldWidth('order')"
+            >
+              <span jhiTranslate="testdele06App.systemAuthority.order">Order</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.display"
+              (nzSortOrderChange)="sort('display', $event)"
+              nzCustomFilter
+              *ngIf="showField('display')"
+              [nzWidth]="fieldWidth('display')"
+            >
+              <span jhiTranslate="testdele06App.systemAuthority.display">Display</span>
+            </th>
+            <th nzWidth="160px" nzRight="0px">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-authority [ngForOf]="nzTable.data">
+            <tr>
+              <td nzLeft="0px" nzShowCheckbox [(nzChecked)]="mapOfCheckedId[authority.id!]" (nzCheckedChange)="refreshStatus()"></td>
+              <td nzLeft="48px">{{ authority.id }}</td>
+              <td *ngIf="showField('id')">
+                <ng-container *ngIf="!editStatus[authority.id!].edit; else nameidTpl">
+                  {{ authority.id }}
+                </ng-container>
+                <ng-template #nameidTpl>
+                  <nz-input-number name="id" [(ngModel)]="authority.id"></nz-input-number>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('name')">
+                <ng-container *ngIf="!editStatus[authority.id!].edit; else namenameTpl">
+                  {{ authority.name }}
+                </ng-container>
+                <ng-template #namenameTpl>
+                  <input nz-input type="text" name="name" [(ngModel)]="authority.name" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('code')">
+                <ng-container *ngIf="!editStatus[authority.id!].edit; else namecodeTpl">
+                  {{ authority.code }}
+                </ng-container>
+                <ng-template #namecodeTpl>
+                  <input nz-input type="text" name="code" [(ngModel)]="authority.code" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('info')">
+                <ng-container *ngIf="!editStatus[authority.id!].edit; else nameinfoTpl">
+                  {{ authority.info }}
+                </ng-container>
+                <ng-template #nameinfoTpl>
+                  <input nz-input type="text" name="info" [(ngModel)]="authority.info" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('order')">
+                <ng-container *ngIf="!editStatus[authority.id!].edit; else nameorderTpl">
+                  {{ authority.order }}
+                </ng-container>
+                <ng-template #nameorderTpl>
+                  <nz-input-number name="order" [(ngModel)]="authority.order"></nz-input-number>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('display')">
+                <nz-switch
+                  [(ngModel)]="authority!.display"
+                  nzCheckedChildren="是"
+                  nzUnCheckedChildren="否"
+                  [nzDisabled]="!editStatus[authority.id].edit"
+                ></nz-switch>
+              </td>
+              <td nzRight="0px">
+                <ng-container *ngIf="!editStatus[authority.id!].edit; else saveTpl">
+                  <button
+                    nz-button
+                    nzType="default"
+                    nzShape="circle"
+                    nzSize="small"
+                    nz-tooltip
+                    nzTooltipTitle="行改"
+                    (click)="startEdit(authority)"
+                  >
+                    <i nz-icon [nzType]="'file-text'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzType="danger"
+                    nzShape="circle"
+                    nzSize="small"
+                    nz-tooltip
+                    nzTooltipTitle="删除"
+                    (click)="deleteConfirm(authority.id)"
+                  >
+                    <i nz-icon nzType="close" nzTheme="outline"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzType="primary"
+                    nzShape="circle"
+                    nzSize="small"
+                    nz-tooltip
+                    nzTooltipTitle="编辑"
+                    [routerLink]="['./', authority.id, 'edit']"
+                  >
+                    <i nz-icon nzType="setting"></i>
+                  </button>
+                </ng-container>
+                <ng-template #saveTpl>
+                  <a (click)="saveEdit(authority)">保存</a>
+                  <a nz-popconfirm nzPopconfirmTitle="放弃保存？" (nzOnConfirm)="cancelEdit(authority.id)">取消</a>
+                </ng-template>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </nz-table>
+      <nz-dropdown-menu #idmenu="nzDropdownMenu">
+        <div class="search-box">
+          <div>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+            <span>-</span>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          </div>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #textMenu="nzDropdownMenu">
+        <div class="search-box">
+          <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #dateMenu="nzDropdownMenu">
+        <div class="search-box">
+          <nz-range-picker [(ngModel)]="dateRange" style="display: block; width: 260px; margin-bottom: 8px"></nz-range-picker>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+    </div>
+  </div>
+</page-grid>

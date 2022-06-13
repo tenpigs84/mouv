@@ -1,0 +1,445 @@
+<page-grid>
+  <div nz-row [nzGutter]="24">
+    <div nz-col>
+      <h1 jhiTranslate="testdele06App.user.home.title">用户</h1>
+      <form nz-form [nzLayout]="'inline'" class="search__form">
+        <div nz-row [nzGutter]="{ xs: 8, sm: 8, md: 8, lg: 24, xl: 48, xxl: 48 }">
+          <div nz-col nzMd="8" nzSm="24">
+            <nz-form-item>
+              <nz-form-label nzFor="no">搜索</nz-form-label>
+              <nz-form-control>
+                <nz-input-group [nzSuffix]="searchSuffixTemplate">
+                  <input type="text" nz-input name="jhiCommonSearchKeywords" [(ngModel)]="searchValue" placeholder="请输入关键字" />
+                </nz-input-group>
+                <ng-template #searchSuffixTemplate>
+                  <i
+                    nz-icon
+                    nz-tooltip
+                    class="ant-input-clear-icon"
+                    nzTheme="fill"
+                    nzType="close-circle"
+                    *ngIf="searchValue"
+                    (click)="searchValue = ''"
+                  ></i>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <button nz-button type="submit" nzType="primary" (click)="loadAll()">查询</button>
+            <button nz-button nzType="primary" [routerLink]="['./new']">增加</button>
+            <button nz-button nzType="danger" *ngIf="numberOfChecked > 0" (click)="deleteByIdsConfirm()">批量删除</button>
+          </div>
+        </div>
+      </form>
+      <div class="my-md">
+        <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message">
+          <ng-template #message>
+            已选择
+            <strong class="text-primary">{{ numberOfChecked }}</strong> 项&nbsp;
+          </ng-template>
+        </nz-alert>
+      </div>
+      <nz-table #nzTable [nzData]="users" [nzScroll]="{ x: tableWidth() }">
+        <thead>
+          <tr>
+            <th
+              nzLeft="0px"
+              nzWidth="48px"
+              nzShowCheckbox
+              [(nzChecked)]="isAllDisplayDataChecked"
+              [nzIndeterminate]="isIndeterminate"
+              (nzCheckedChange)="checkAll($event)"
+            ></th>
+            <th
+              nzLeft="48px"
+              nzWidth="52px"
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.id"
+              (nzSortOrderChange)="sort('id', $event)"
+              nzCustomFilter
+            >
+              <span jhiTranslate="global.field.id">ID</span>
+              <i
+                class="ant-table-filter-icon"
+                nz-icon
+                nz-dropdown
+                #dropdown="nzDropdown"
+                nzType="search"
+                [nzDropdownMenu]="idmenu"
+                [class.ant-table-filter-open]="dropdown.nzVisible"
+                nzTrigger="click"
+                nzPlacement="bottomRight"
+                [nzClickHide]="false"
+                nzTableFilter
+              >
+              </i>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.id"
+              (nzSortOrderChange)="sort('id', $event)"
+              nzCustomFilter
+              *ngIf="showField('id')"
+              [nzWidth]="fieldWidth('id')"
+            >
+              <span jhiTranslate="testdele06App.user.id">ID</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.login"
+              (nzSortOrderChange)="sort('login', $event)"
+              nzCustomFilter
+              *ngIf="showField('login')"
+              [nzWidth]="fieldWidth('login')"
+            >
+              <span jhiTranslate="testdele06App.user.login">Login</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.password"
+              (nzSortOrderChange)="sort('password', $event)"
+              nzCustomFilter
+              *ngIf="showField('password')"
+              [nzWidth]="fieldWidth('password')"
+            >
+              <span jhiTranslate="testdele06App.user.password">Password</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.firstName"
+              (nzSortOrderChange)="sort('firstName', $event)"
+              nzCustomFilter
+              *ngIf="showField('firstName')"
+              [nzWidth]="fieldWidth('firstName')"
+            >
+              <span jhiTranslate="testdele06App.user.firstName">First Name</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.lastName"
+              (nzSortOrderChange)="sort('lastName', $event)"
+              nzCustomFilter
+              *ngIf="showField('lastName')"
+              [nzWidth]="fieldWidth('lastName')"
+            >
+              <span jhiTranslate="testdele06App.user.lastName">Last Name</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.email"
+              (nzSortOrderChange)="sort('email', $event)"
+              nzCustomFilter
+              *ngIf="showField('email')"
+              [nzWidth]="fieldWidth('email')"
+            >
+              <span jhiTranslate="testdele06App.user.email">Email</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.mobile"
+              (nzSortOrderChange)="sort('mobile', $event)"
+              nzCustomFilter
+              *ngIf="showField('mobile')"
+              [nzWidth]="fieldWidth('mobile')"
+            >
+              <span jhiTranslate="testdele06App.user.mobile">Mobile</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.birthday"
+              (nzSortOrderChange)="sort('birthday', $event)"
+              nzCustomFilter
+              *ngIf="showField('birthday')"
+              [nzWidth]="fieldWidth('birthday')"
+            >
+              <span jhiTranslate="testdele06App.user.birthday">Birthday</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.activated"
+              (nzSortOrderChange)="sort('activated', $event)"
+              nzCustomFilter
+              *ngIf="showField('activated')"
+              [nzWidth]="fieldWidth('activated')"
+            >
+              <span jhiTranslate="testdele06App.user.activated">Activated</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.langKey"
+              (nzSortOrderChange)="sort('langKey', $event)"
+              nzCustomFilter
+              *ngIf="showField('langKey')"
+              [nzWidth]="fieldWidth('langKey')"
+            >
+              <span jhiTranslate="testdele06App.user.langKey">Lang Key</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.imageUrl"
+              (nzSortOrderChange)="sort('imageUrl', $event)"
+              nzCustomFilter
+              *ngIf="showField('imageUrl')"
+              [nzWidth]="fieldWidth('imageUrl')"
+            >
+              <span jhiTranslate="testdele06App.user.imageUrl">Image Url</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.activationKey"
+              (nzSortOrderChange)="sort('activationKey', $event)"
+              nzCustomFilter
+              *ngIf="showField('activationKey')"
+              [nzWidth]="fieldWidth('activationKey')"
+            >
+              <span jhiTranslate="testdele06App.user.activationKey">Activation Key</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.activationKey"
+              (nzSortOrderChange)="sort('activationKey', $event)"
+              nzCustomFilter
+              *ngIf="showField('activationKey')"
+              [nzWidth]="fieldWidth('activationKey')"
+            >
+              <span jhiTranslate="testdele06App.user.activationKey">Activation Key</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.resetKey"
+              (nzSortOrderChange)="sort('resetKey', $event)"
+              nzCustomFilter
+              *ngIf="showField('resetKey')"
+              [nzWidth]="fieldWidth('resetKey')"
+            >
+              <span jhiTranslate="testdele06App.user.resetKey">Reset Key</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.resetDate"
+              (nzSortOrderChange)="sort('resetDate', $event)"
+              nzCustomFilter
+              *ngIf="showField('resetDate')"
+              [nzWidth]="fieldWidth('resetDate')"
+            >
+              <span jhiTranslate="testdele06App.user.resetDate">Reset Date</span>
+            </th>
+            <th
+              [nzWidth]="relationshipWidth('department')"
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.department"
+              (nzSortOrderChange)="sort('department', $event)"
+              nzShowFilter
+              [nzFilters]="mapOfFilter.department?.list"
+              (nzFilterChange)="filter('department', $event)"
+              *ngIf="showRelationship('department')"
+            >
+              <span jhiTranslate="testdele06App.user.department">部门</span>
+            </th>
+            <th nzWidth="160px" nzRight="0px">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-user [ngForOf]="nzTable.data">
+            <tr>
+              <td nzLeft="0px" nzShowCheckbox [(nzChecked)]="mapOfCheckedId[user.id!]" (nzCheckedChange)="refreshStatus()"></td>
+              <td nzLeft="48px">{{ user.id }}</td>
+              <td *ngIf="showField('id')">
+                <ng-container *ngIf="!editStatus[user.id!].edit; else nameidTpl">
+                  {{ user.id }}
+                </ng-container>
+                <ng-template #nameidTpl>
+                  <nz-input-number name="id" [(ngModel)]="user.id"></nz-input-number>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('login')">
+                <ng-container *ngIf="!editStatus[user.id!].edit; else nameloginTpl">
+                  {{ user.login }}
+                </ng-container>
+                <ng-template #nameloginTpl>
+                  <input nz-input type="text" name="login" [(ngModel)]="user.login" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('password')">
+                <ng-container *ngIf="!editStatus[user.id!].edit; else namepasswordTpl">
+                  {{ user.password }}
+                </ng-container>
+                <ng-template #namepasswordTpl>
+                  <input nz-input type="text" name="password" [(ngModel)]="user.password" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('firstName')">
+                <ng-container *ngIf="!editStatus[user.id!].edit; else namefirstNameTpl">
+                  {{ user.firstName }}
+                </ng-container>
+                <ng-template #namefirstNameTpl>
+                  <input nz-input type="text" name="firstName" [(ngModel)]="user.firstName" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('lastName')">
+                <ng-container *ngIf="!editStatus[user.id!].edit; else namelastNameTpl">
+                  {{ user.lastName }}
+                </ng-container>
+                <ng-template #namelastNameTpl>
+                  <input nz-input type="text" name="lastName" [(ngModel)]="user.lastName" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('email')">
+                <ng-container *ngIf="!editStatus[user.id!].edit; else nameemailTpl">
+                  {{ user.email }}
+                </ng-container>
+                <ng-template #nameemailTpl>
+                  <input nz-input type="text" name="email" [(ngModel)]="user.email" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('mobile')">
+                <ng-container *ngIf="!editStatus[user.id!].edit; else namemobileTpl">
+                  {{ user.mobile }}
+                </ng-container>
+                <ng-template #namemobileTpl>
+                  <input nz-input type="text" name="mobile" [(ngModel)]="user.mobile" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('birthday')">
+                <ng-container *ngIf="!editStatus[user.id!].edit; else namebirthdayTpl">
+                  {{ user!.birthday }}
+                </ng-container>
+                <ng-template #namebirthdayTpl>
+                  <nz-date-picker [(ngModel)]="user.birthday" nzShowTime></nz-date-picker>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('activated')">
+                <nz-switch
+                  [(ngModel)]="user!.activated"
+                  nzCheckedChildren="是"
+                  nzUnCheckedChildren="否"
+                  [nzDisabled]="!editStatus[user.id].edit"
+                ></nz-switch>
+              </td>
+              <td *ngIf="showField('langKey')">
+                <ng-container *ngIf="!editStatus[user.id!].edit; else namelangKeyTpl">
+                  {{ user.langKey }}
+                </ng-container>
+                <ng-template #namelangKeyTpl>
+                  <input nz-input type="text" name="langKey" [(ngModel)]="user.langKey" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('imageUrl')">
+                <ng-container *ngIf="!editStatus[user.id!].edit; else nameimageUrlTpl">
+                  {{ user.imageUrl }}
+                </ng-container>
+                <ng-template #nameimageUrlTpl>
+                  <input nz-input type="text" name="imageUrl" [(ngModel)]="user.imageUrl" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('activationKey')">
+                <ng-container *ngIf="!editStatus[user.id!].edit; else nameactivationKeyTpl">
+                  {{ user.activationKey }}
+                </ng-container>
+                <ng-template #nameactivationKeyTpl>
+                  <input nz-input type="text" name="activationKey" [(ngModel)]="user.activationKey" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('activationKey')">
+                <ng-container *ngIf="!editStatus[user.id!].edit; else nameactivationKeyTpl">
+                  {{ user.activationKey }}
+                </ng-container>
+                <ng-template #nameactivationKeyTpl>
+                  <input nz-input type="text" name="activationKey" [(ngModel)]="user.activationKey" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('resetKey')">
+                <ng-container *ngIf="!editStatus[user.id!].edit; else nameresetKeyTpl">
+                  {{ user.resetKey }}
+                </ng-container>
+                <ng-template #nameresetKeyTpl>
+                  <input nz-input type="text" name="resetKey" [(ngModel)]="user.resetKey" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('resetDate')">
+                <ng-container *ngIf="!editStatus[user.id!].edit; else nameresetDateTpl">
+                  {{ user!.resetDate | date: 'yyyy-MM-dd HH:mm:ss' }}
+                </ng-container>
+                <ng-template #nameresetDateTpl>
+                  <nz-date-picker [(ngModel)]="user.resetDate" nzShowTime></nz-date-picker>
+                </ng-template>
+              </td>
+              <td *ngIf="showRelationship('department')">
+                <div *ngIf="user.departmentId">
+                  <a [routerLink]="['../department', user.departmentId, 'view']">{{ user.departmentName }}</a>
+                </div>
+              </td>
+              <td nzRight="0px">
+                <ng-container *ngIf="!editStatus[user.id!].edit; else saveTpl">
+                  <button
+                    nz-button
+                    nzType="default"
+                    nzShape="circle"
+                    nzSize="small"
+                    nz-tooltip
+                    nzTooltipTitle="行改"
+                    (click)="startEdit(user)"
+                  >
+                    <i nz-icon [nzType]="'file-text'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzType="danger"
+                    nzShape="circle"
+                    nzSize="small"
+                    nz-tooltip
+                    nzTooltipTitle="删除"
+                    (click)="deleteConfirm(user.id)"
+                  >
+                    <i nz-icon nzType="close" nzTheme="outline"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzType="primary"
+                    nzShape="circle"
+                    nzSize="small"
+                    nz-tooltip
+                    nzTooltipTitle="编辑"
+                    [routerLink]="['./', user.id, 'edit']"
+                  >
+                    <i nz-icon nzType="setting"></i>
+                  </button>
+                </ng-container>
+                <ng-template #saveTpl>
+                  <a (click)="saveEdit(user)">保存</a>
+                  <a nz-popconfirm nzPopconfirmTitle="放弃保存？" (nzOnConfirm)="cancelEdit(user.id)">取消</a>
+                </ng-template>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </nz-table>
+      <nz-dropdown-menu #idmenu="nzDropdownMenu">
+        <div class="search-box">
+          <div>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+            <span>-</span>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          </div>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #textMenu="nzDropdownMenu">
+        <div class="search-box">
+          <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #dateMenu="nzDropdownMenu">
+        <div class="search-box">
+          <nz-range-picker [(ngModel)]="dateRange" style="display: block; width: 260px; margin-bottom: 8px"></nz-range-picker>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+    </div>
+  </div>
+</page-grid>
